@@ -19,10 +19,12 @@ For this challenge, you will need to create a class that has a method accepting 
 public class ContactSearch {
   public static List<Contact> searchForContacts(String lname,String mcode){
     try{
-      Contact mylist[] = [SELECT ID,Name 
-                          FROM Contact 
-                          WHERE LastName=:lname 
-                          AND MailingPostalCode=:mcode];
+      Contact mylist[] = [
+        SELECT ID,Name 
+        FROM Contact 
+        WHERE LastName=:lname 
+        AND MailingPostalCode=:mcode
+        ];
       return mylist;
     }catch(DmlException e){
       System.debug('A DML exception has occurred: ' +
