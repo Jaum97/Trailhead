@@ -16,15 +16,15 @@ To pass this challenge, create an Apex class that inserts a new account named af
 */
 
 public class AccountHandler {
-  public Account insertNewAccount(String accName){
-      try {
-        Account myAccount = new Account(Name = accName);
-        insert myAccount;
-        return myAccount;
-      }catch(DmlException e){
-        System.debug('A DML exception has occurred: ' +
-            e.getMessage());
-            return null;
+  public static Account insertNewAccount(String accName){
+    try {
+      Account myAccount = new Account(Name = accName);
+      insert myAccount;
+      return myAccount;
+    }catch(DmlException e){
+      System.debug('A DML exception has occurred: ' +
+      e.getMessage());
+      return null;
     }
   }
 }
