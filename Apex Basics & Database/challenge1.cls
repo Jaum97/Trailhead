@@ -18,7 +18,9 @@ Your Challenge
 public class StringArrayTest {
   public static String[] generateStringArray(Integer n){
     List<string> myList = new List<String>();
-    for(Integer i=0;i<n;i++){myList.add('Test '+i);}
+    for(Integer i=0;i<n;i++){
+      myList.add('Test '+i);
+    }
     return myList;
   }
 }

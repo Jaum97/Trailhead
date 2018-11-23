@@ -18,11 +18,11 @@ Install a simple Apex class, write unit tests that achieve 100% code coverage fo
 
 @isTest
 public class TestVerifyDate {
-	@isTest static void testDates(){
-        Date date1 = system.today().addDays(7);
-        Date date2 = system.today().addMonths(4);
-        VerifyDate.CheckDates(system.today(), date1);
-        VerifyDate.CheckDates(system.today(), date2);
+  @isTest static void testDates(){
+    Date date1 = system.today().addDays(7);
+    Date date2 = system.today().addMonths(4);
+    VerifyDate.CheckDates(system.today(), date1);
+    VerifyDate.CheckDates(system.today(), date2);
     }
 }
 
