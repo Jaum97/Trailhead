@@ -15,27 +15,20 @@ To complete this challenge, you need to add a trigger for Opportunity. The trigg
 
 trigger ClosedOpportunityTrigger on Opportunity (after insert, after update) {
 
-    List<Task> taskList = new List<Task>();
+    List<Task> mylist = new List<Task>();
     
-    for(Opportunity opp : Trigger.new) {
-		
-		//Only create Follow Up Task only once when Opp StageName is to 'Closed Won' on Create
+    for(Opportunity opp : [SELECT Id FROM Opportunity WHERE StageName = 'Closed Won' AND Id IN : Trigger.New]) {
+
 		if(Trigger.isInsert) {
-			if(Opp.StageName == 'Closed Won') {
-				taskList.add(new Task(Subject = 'Follow Up Test Task', WhatId = opp.Id));
-			}
+				mylist.add(new Task(Subject = 'Follow Up Test Task', WhatId = opp.Id));
 		}
-		
-		//Only create Follow Up Task only once when Opp StageName changed to 'Closed Won' on Update
 		if(Trigger.isUpdate) {
-			if(Opp.StageName == 'Closed Won' 
-			&& Opp.StageName != Trigger.oldMap.get(opp.Id).StageName) {
-				taskList.add(new Task(Subject = 'Follow Up Test Task', WhatId = opp.Id));
+			if(Opp.StageName != Trigger.oldMap.get(opp.Id).StageName) {
+				mylist.add(new Task(Subject = 'Follow Up Test Task', WhatId = opp.Id));
 			}
 		}       
     }
-
-    if(taskList.size()>0) {        
-        insert taskList;        
-    }    
+    if(mylist.size()>0){      
+     insert mylist;        
+    }
 }
