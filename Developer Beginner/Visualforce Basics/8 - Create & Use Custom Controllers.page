@@ -1,0 +1,47 @@
+<!--
+https://trailhead.salesforce.com/content/learn/modules/visualforce_fundamentals/visualforce_custom_controllers
+
+Developer Basics > Visualforce Basics > Create & Use Custom Controllers 
+
+Your Challenge
+Create a Visualforce page displaying new cases
+Create a Visualforce page that uses a custom controller to display a list of cases with the status of 'New'.
+Challenge Requirements
+
+    The page must be named NewCaseList
+    The custom controller Apex class must be named NewCaseListController and include the following:
+        A publicly scoped method named getNewCases
+        Use the return type of List<Case>
+        Return a list of case records that includes the ID and CaseNumber fields
+        Filter the results returned to only have a status of New
+    The NewCaseList Visualforce page must use an apex:repeat component, which is:
+        Bound to newCases
+        Refers to the var attribute as case
+        With the component tags, bind an apex:outputLink component to the ID of the case. This will cause the the page to direct the user to the detail page of the respective case record.
+
+-->
+
+<!-- CLASS -->
+public class NewCaseListController {
+    public List<case> getNewCases () {
+        try{
+            List<case> mylist = [SELECT ID, CaseNumber FROM case WHERE status = 'New']; 
+          return mylist;
+        }catch(DmlException e){
+          System.debug('A DML exception has occurred: ' +
+          e.getMessage());
+          return null;
+        }
+    }
+}
+
+<!--PAGE-->
+<apex:page controller="NewCaseListController">
+    <apex:pageBlock title="Case List" id="cases_list">
+        <li>
+            <apex:repeat var="case" value="{!newCases}" rendered="true" id="rCases">
+                <p><apex:outputLink value="/{!case.ID}">{!case.CaseNumber}</apex:outputLink></p>
+            </apex:repeat>
+		</li>
+    </apex:pageBlock>
+</apex:page>
