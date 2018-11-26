@@ -1,0 +1,40 @@
+<!--
+https://trailhead.salesforce.com/content/learn/modules/developer_console/developer_console_source_code?trail_id=force_com_dev_beginner
+
+Developer Basics > Developer Console Basics > Navigate and Edit Source Code
+
+Your Challenge
+Create a Visualforce Page
+Create a Visualforce page that your engineers can use to indicate that they’re at their stations and ready for takeoff. For now, just create the Visualforce page. Later, when you have some downtime in deep space, you can add an Apex controller and some more page components.
+
+    Create a Visualforce page named StationCheck.
+    Copy the code for the FlightSystemsChecklist page and paste it into your new StationCheck page.
+    Change the contents of the heading (<h1>) from "Checklist" to "Station Status".
+    Change the apex:form id from "engineReadinessChecklist" to "stationReadinessChecklist".
+    Change the pageBlock title from "Flight Systems Checklist" to "Station Readiness Checklist".
+    Delete all of the code from the line that contains "<!-First Section->" to the line that contains "</apex:pageBlockSection>".
+    Save your Visualforce page, and then click Preview and ensure that the page loads.
+-->
+
+<apex:page sidebar="false">
+<!--Flight Systems Checklist Visualforce Page-->
+   <h1>Station Status</h1>
+   <apex:form id="stationReadinessChecklist">
+      <apex:pageBlock title="Station Readiness Checklist">
+         <!--First Section-->
+         <!--Second Section-->
+         <apex:pageBlockSection title="Fuel Tanks">
+            <apex:inputCheckbox immediate="true"/>Tank 1
+            <apex:inputCheckbox immediate="true"/>Tank 2
+            <apex:inputCheckbox immediate="true"/>Tank 3
+            <apex:inputCheckbox immediate="true"/>Tank 4
+            <apex:inputCheckbox immediate="true"/>Tank 5
+            <apex:inputCheckbox immediate="true"/>Tank 6
+         </apex:pageBlockSection>
+         <apex:pageBlockButtons>
+            <!--Adding Save Button-->
+            <apex:commandButton value="Save" action="{!save}"/>
+         </apex:pageBlockButtons>
+      </apex:pageBlock>
+   </apex:form>
+</apex:page>
