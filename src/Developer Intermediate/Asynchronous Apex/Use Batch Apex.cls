@@ -16,7 +16,7 @@ Create an Apex class that implements the Database.Batchable interface to update 
     Run your test class at least once (via 'Run All' tests the Developer Console) before attempting to verify this challenge
 */
 
-global class LeadProcessor implements 
+global class LeadProcessor implements
 Database.Batchable<sObject>, Database.Stateful {
     // instance member to retain state across transactions
     global Integer recordsProcessed = 0;
@@ -28,35 +28,35 @@ Database.Batchable<sObject>, Database.Stateful {
     global void execute(Database.BatchableContext bc, List<Lead> scope){
         // process each batch of records
         List<Lead> leads = new List<Lead>();
-        for (Lead lead : scope) {   
+        for (Lead lead : scope) {
                 lead.LeadSource = 'Dreamforce';
                 // increment the instance member counter
                 recordsProcessed = recordsProcessed + 1;
-   
+
         }
         update leads;
-    }    
+    }
 
     global void finish(Database.BatchableContext bc){
         System.debug(recordsProcessed + ' records processeD.');
-        
-    }    
+
+    }
 }
 
 @isTest
 public class LeadProcessorTest {
- @testSetup 
+ @testSetup
     static void setup() {
         List<Lead> leads = new List<Lead>();
         // insert 200 leads
         for (Integer i=0;i<200;i++) {
-            leads.add(new Lead(LastName='Lead '+i, 
+            leads.add(new Lead(LastName='Lead '+i,
                 Company='Lead', Status='Open - Not Contacted'));
         }
         insert leads;
     }
 
-    static testmethod void test() {  
+    static testmethod void test() {
         Test.startTest();
         LeadProcessor lp = new LeadProcessor();
         Id batchId = Database.executeBatch(lp);

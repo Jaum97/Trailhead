@@ -38,7 +38,7 @@ public class AddPrimaryContact implements Queueable {
 }
 
 @isTest
-public class AddPrimaryContactTest 
+public class AddPrimaryContactTest
 {
      @isTest static void TestList()
      {
@@ -58,7 +58,7 @@ public class AddPrimaryContactTest
          co.LastName ='demo';
          insert co;
          String state = 'CA';
-      
+
           AddPrimaryContact apc = new AddPrimaryContact(co, state);
           Test.startTest();
             System.enqueueJob(apc);

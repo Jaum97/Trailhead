@@ -20,9 +20,9 @@ public class ContactSearch {
   public static List<Contact> searchForContacts(String lname,String mcode){
     try{
       Contact mylist[] = [
-        SELECT ID,Name 
-        FROM Contact 
-        WHERE LastName=:lname 
+        SELECT ID,Name
+        FROM Contact
+        WHERE LastName=:lname
         AND MailingPostalCode=:mcode
         ];
       return mylist;

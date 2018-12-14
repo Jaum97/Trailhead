@@ -19,7 +19,7 @@ Create a Lightning Component to display a single item for your packing list.
     <p>Name:<ui:outputText value="{!v.item.Name}"/>
     </p>
     <p>Price:<lightning:formattedNumber value="{!v.item.Price__c}" style="currency"/>
-    </p>    
+    </p>
     <p>Quantity:<lightning:formattedNumber value="{!v.item.Quantity__c}"/>
     </p>
     <p>Packed:<lightning:input type="toggle" label="packed" checked="{!v.item.Packed__c}" />

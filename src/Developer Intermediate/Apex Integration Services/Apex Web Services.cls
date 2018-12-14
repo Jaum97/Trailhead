@@ -23,16 +23,16 @@ global with sharing class AccountManager {
         // grab the accountId from the end of the URL
         String accountId = request.requestURI.substringBetween('Accounts/','/contacts');
         Account result = [SELECT Id,Name,
-                         (SELECT Id,Name FROM Contacts) 
+                         (SELECT Id,Name FROM Contacts)
                          FROM Account
                          WHERE Id = :accountId
                          LIMIT 1];
         return result;
     }
-    
+
 }
 
-@isTest 
+@isTest
 private class AccountManagerTest{
     static testMethod void testMethod1(){
         Account objAccount = new Account(Name = 'test Account');

@@ -16,8 +16,8 @@ Create an Apex class with a method using the @future annotation that accepts a L
 */
 global class AccountProcessor {
     @future
-    public static void countContacts(Set<ID> accountIDs) {   
-    	List<Account> accs = [SELECT Id, Number_of_Contacts__c FROM Account WHERE Id IN :accountIDs];	        
+    public static void countContacts(Set<ID> accountIDs) {
+    	List<Account> accs = [SELECT Id, Number_of_Contacts__c FROM Account WHERE Id IN :accountIDs];
     	for( Account acc : accs ){
             List<Contact> cons = acc.contacts ;
             acc.Number_of_Contacts__c = cons.size();
@@ -38,10 +38,10 @@ public class AccountProcessorTest {
         cont.LastName ='Masters';
         cont.AccountId = a.Id;
         Insert cont;
-   
+
         Set<Id> setAccId = new Set<ID>();
         setAccId.add(a.id);
-        
+
         Test.startTest();
         	AccountProcessor.countContacts(setAccId);
         Test.stopTest();
